@@ -2,6 +2,41 @@
 #define BINARY_SEARCH_TREE_H
 
 #include "Binary_Tree.h"
+#include <sstream>
+#include <istream>
+#include <string>
+#include <iostream>
+#include <iterator>
+
+using namespace std;
+
+
+std::string AddSpaceToString(std::string input)
+{
+	const int arrLength = 2;
+	unsigned int lastFind = 0;
+	std::string output;
+	std::string dictionary[arrLength] = { "0", "1" };
+
+	for (int j = 0; lastFind < input.size() && j < arrLength; ++j)
+	{
+
+		if (dictionary[j] == input.substr(lastFind, dictionary[j].size()))
+		{
+			lastFind += dictionary[j].size();
+			output += dictionary[j] + " ";
+			j = -1;
+		}
+	}
+
+	return output;
+}
+
+
+
+
+
+
 
 
 template<typename Item_Type>
@@ -16,15 +51,8 @@ public:
 
 	virtual bool erase(const Item_Type& item);
 
-	const Item_Type* min() const;
 
-	const Item_Type* min(BTNode<Item_Type>* local_root) const;
-
-	const Item_Type* max() const;
-
-	const Item_Type* max(BTNode<Item_Type>* local_root) const;
-
-	const Item_Type* find(const Item_Type& target) const;
+	Item_Type find(Item_Type& target);
 private:
 
 	// Private Member Functions
@@ -34,8 +62,7 @@ private:
 	virtual bool erase(BTNode<Item_Type>*& local_root,
 		const Item_Type& item);
 
-	const Item_Type* find(BTNode<Item_Type>* local_root,
-		const Item_Type& target) const;
+	Item_Type find(BTNode<Item_Type>* local_root, Item_Type& target);
 
 	virtual void replace_parent(
 		BTNode<Item_Type>*& old_root,
@@ -43,56 +70,52 @@ private:
 
 }; // End binary search tree
 
+
+
+
 template<typename Item_Type>
-const Item_Type* Binary_Search_Tree<Item_Type>::min() const {
-	return min(this->root);
+Item_Type Binary_Search_Tree<Item_Type>::find(Item_Type& item)
+{
+	istringstream iss(item);
+	string word;
+	string letter = "cat";
+	while (iss >> word)
+	{
+		string space = AddSpaceToString(word);
 		
+		istringstream ss(space);
+
+		
+		letter = find(this->root, ss);
+
+		cout << letter;
+	}
+
+	return letter;
 }
 
 template<typename Item_Type>
-const Item_Type* Binary_Search_Tree<Item_Type>::min(BTNode<Item_Type>* local_root) const{
+Item_Type Binary_Search_Tree<Item_Type>::find(BTNode<Item_Type>* local_root, Item_Type& target)
+{
 	if (local_root == NULL)
+	{
 		return NULL;
+	}
 
-		if (local_root->left == NULL)
-			return &(local_root->data);
-		 return min(local_root->left);
-}
+	string num;
 
-template<typename Item_Type>
-const Item_Type* Binary_Search_Tree<Item_Type>::max() const {
-	return max(this->root);
-
-}
-
-template<typename Item_Type>
-const Item_Type* Binary_Search_Tree<Item_Type>::max(BTNode<Item_Type>* local_root) const{
-	if (local_root == NULL)
-		return NULL;
-
-		if (local_root->right == NULL)
-			return &(local_root->data);
-		return max(local_root->right);
-}
-
-
-
-template<typename Item_Type>
-const Item_Type* Binary_Search_Tree<Item_Type>::find(
-	const Item_Type& item) const {
-		return find(this->root, item);
-}
-
-template<typename Item_Type>
-const Item_Type* Binary_Search_Tree<Item_Type>::find(BTNode<Item_Type>* local_root, const Item_Type& target) const {
-		if (local_root == NULL)
-			return NULL;
-		if (target < local_root->data)
+	if (target >> num)
+	{
+		if (num == "0")
+		{
 			return find(local_root->left, target);
-		else if (local_root->data < target)
+		}
+
+		else if (num == "1")
+		{
 			return find(local_root->right, target);
-		else
-			return &(local_root->data);
+		}
+	}
 }
 
 template<typename Item_Type>
