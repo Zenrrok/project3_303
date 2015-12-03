@@ -1,4 +1,3 @@
-
 #pragma once
 #include "Binary_Search_Tree.h"
 #include <string>
@@ -17,7 +16,7 @@ int main() {
 
 	Binary_Search_Tree<string> binary_tree;
 	binary_tree.read_tree(BinarySearchData);
-	string target = "01";
+	string target = "01 11";
 
 	// "a" should be the output
 	binary_tree.find(target);
@@ -26,16 +25,3 @@ int main() {
 
 	return 0;
 }
-	
-
-/*
-I think the tree should be created now. I used Lecture 11 slide 8 as a reference. I don't think tobedeleted or erase is needed. 
-The find function is going to be edited so that it takes in a code like "1000" and decodes it.
-Parses through the string using stringstream. Then traverses the tree by the code.
-So right for a 1 and left for a 0. Until it finds the letter which is b in this example.
-
-For encoding I think a map will be a lot easier because the letter can be the key and the code, the data.
-*/
-   
-
-	
