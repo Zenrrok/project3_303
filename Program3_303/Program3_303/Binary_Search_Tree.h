@@ -73,49 +73,56 @@ private:
 
 
 
+
 template<typename Item_Type>
 Item_Type Binary_Search_Tree<Item_Type>::find(Item_Type& item)
 {
 	istringstream iss(item);
 	string word;
-	string letter = "cat";
+	string letters = "";
 	while (iss >> word)
 	{
-		string space = AddSpaceToString(word);
+		//string space = AddSpaceToString(word);
 		
-		istringstream ss(space);
-
+		//istringstream ss(space);
+		int i = 0;
+		letters += find(this->root, word, i);
 		
-		letter = find(this->root, ss);
-
-		cout << letter;
+		
+		//letter = find(this->root, ss);	
 	}
 
-	return letter;
+	cout << letters;
+	return letters;
 }
 
 template<typename Item_Type>
-Item_Type Binary_Search_Tree<Item_Type>::find(BTNode<Item_Type>* local_root, Item_Type& target)
+Item_Type Binary_Search_Tree<Item_Type>::find(BTNode<Item_Type>* local_root, Item_Type& word, int index )
 {
 	if (local_root == NULL)
 	{
 		return NULL;
 	}
 
-	string num;
-
-	if (target >> num)
+	if (index == (word.length() - 1))
 	{
-		if (num == "0")
-		{
-			return find(local_root->left, target);
-		}
-
-		else if (num == "1")
-		{
-			return find(local_root->right, target);
-		}
+		return local_root->data;
 	}
+
+
+	char num = word[index];
+
+	if (num == "0")
+	{
+		
+		return find(local_root->left, word, ++index);
+	}
+
+	else if (num == "1")
+	{
+		return find(local_root->right, word, ++index);
+	}
+	
 }
 
 template<typename Item_Type>
