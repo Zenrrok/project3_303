@@ -71,6 +71,9 @@
     <ClInclude Include="myBinaryTree.h" />
     <ClInclude Include="myNode.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="treeDiagram.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
