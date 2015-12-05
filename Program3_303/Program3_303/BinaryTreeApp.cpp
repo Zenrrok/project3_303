@@ -28,7 +28,6 @@ For encoding I think a map will be a lot easier because the letter can be the ke
 */
    
 
-	
-	
+		
 
 }

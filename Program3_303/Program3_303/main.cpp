@@ -1,4 +1,4 @@
-/*Jose Manuel Silve- Rodrgiguez, INSERT NAME, INSERT NAME
+/*Jose Manuel Silve- Rodrgiguez, Stephanie Retzke, Austin Brennan
 CS Project 3 303*/
 #include <iostream>
 #include <fstream>
@@ -64,4 +64,6 @@ int main()
 	system("PAUSE");
 
 	return 0;
+
+
 }
